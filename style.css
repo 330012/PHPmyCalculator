@@ -1,0 +1,136 @@
+:root {
+	--main: #3F0071;
+	--second: #FB2576;
+	--third: #332FD0;
+	--contrast: #0002A1;
+}
+
+/* * {outline: solid red;} */
+
+body {
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--main);
+	display: grid;
+	justify-items: center;
+	align-items: flex-start;
+	margin: unset;
+}
+
+header {
+	align-self: center;
+}
+
+h1 {
+	color: var(--main);
+	font-weight: 500;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: var(--second);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	width: auto;
+	margin: 3vh 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	column-gap: 2vmax;
+}
+
+input[type="number"] {
+	transition-property: background-color, color, border-color;
+	transition-duration: 500ms;
+	width: 25vmin;
+	height: 6vmin;
+	background-color: var(--second);
+	color: var(--main);
+	border-radius: 2em;
+	border-style: solid;
+	border-color: var(--contrast);
+	border-width: .25em;
+	font-size: 2em;
+	text-align: start;
+	padding: .25em 1em;
+}
+
+input[type="number"]:hover,
+input[type="number"]:focus {
+	background-color: var(--main);
+	color: var(--second);
+	border-color: var(--second);
+	outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+form > button {
+	background-color: var(--second);
+	color: var(--main);
+	border-color: var(--contrast);
+}
+
+form > button:hover {
+	background-color: var(--main);
+	color: var(--second);
+	border-color: var(--second);
+}
+
+div {
+	margin: 1.5vh 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	column-gap: 2vmax;
+}
+
+aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+button {
+	transition-property: scale, color, border-color, border-width;
+	transition-duration: 250ms;
+	aspect-ratio: 1/1;
+	width: 10vmin;
+	scale: 1;
+	background-color: var(--contrast);
+	color: var(--second);
+	border-radius: 50%;
+	border-style: solid;
+	border-width: .25em;
+	border-color: var(--third);
+	font-size: 2em;
+	text-align: center;
+}
+
+button:hover,
+button:active {
+	color: var(--second);
+	border-width: .3em;
+	border-color: var(--second);
+}
+
+button:hover {
+	scale: 1.25;
+}
+
+button:active {
+	scale: .75;
+}
