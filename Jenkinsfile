@@ -1,4 +1,4 @@
-/pipeline{
+pipeline{
     agent any
     environment{
         staging_server="43.204.150.195"
