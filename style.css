@@ -1,11 +1,9 @@
 :root {
-	--main: #3F0071;
-	--second: #FB2576;
-	--third: #332FD0;
-	--contrast: #0002A1;
+	--main: #1a237e;  /* Indigo 900 */
+	--second: #ff6f00;  /* Amber 900 */
+	--third: #1b5e20;  /* Green 900 */
+	--contrast: #b71c1c;  /* Red 900 */
 }
-
-/* * {outline: solid red;} */
 
 body {
 	overflow: hidden;
@@ -68,12 +66,6 @@ input[type="number"]:focus {
 	color: var(--second);
 	border-color: var(--second);
 	outline: none;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	appearance: none;
-	margin: 0;
 }
 
 form > button {

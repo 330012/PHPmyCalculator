@@ -7,17 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PHPmyCalculator</title>
 	<link rel="stylesheet" href="style.css">
-	<script src="app.js" defer></script>
 </head>
-
-<!--
-	TODO: Implement the logic  for the calculator using the form
-	- The logic of the calculator need to be implemented in php
-	- Can add a final 0 + at the start of the total operation
-	- Implement the logic to assign the value to total and calculate the "equal"
-	- Implement the logic to calculate
-	- Check to use the title to display the value or another element, using the input only for the new value
--->
 
 <body>
 	<header>
@@ -49,8 +39,8 @@
 			<div>
 				<button value="+">+</button>
 				<button value="-">-</button>
-				<button value="*">&CenterDot;</button>
-				<button value="/">&divide;</button>
+				<button value="*">·</button>
+				<button value="/">÷</button>
 			</div>
 			<div>
 				<button value="1">1</button>
@@ -72,6 +62,79 @@
 			</div>
 		</aside>
 	</main>
+
+	<script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+			const buttons = Array.from(document.querySelectorAll("div > button"));
+			const numericButtons = buttons.filter(button => button.innerText.match(/\d/g));
+			const operatorsButtons = buttons.filter(button => button.innerText.match(/\+|\-|·|÷/g));
+			const decimalButton = buttons.filter(button => button.innerText == ",")[0];
+			const clearButton = buttons.filter(button => button.innerText == "C")[0];
+			const numberInput = document.querySelector("input[name=\"number\"]");
+			const operatorInput = document.querySelector("input[name=\"operator\"]");
+			const operationInput = document.querySelector("input[name=\"operation\"]");
+			const calculateInput = document.querySelector("input[name=\"calculate\"]");
+			const submitButton = document.querySelector("button[type=\"submit\"]");
+			const form = document.querySelector("form[name=\"calculate\"]");
+
+			let nextDecimal = false;
+
+			operatorsButtons.forEach(
+				operator => operator.addEventListener(
+					"click",
+					() => {
+						operationInput.value += operatorInput.value + numberInput.value;
+						operatorInput.value = operator.value;
+						form.submit();
+					}
+				)
+			);
+
+			numericButtons.forEach(
+				number => number.addEventListener(
+					"click",
+					() => {
+						const numberValue = number.value;
+
+						if (nextDecimal) numberInput.value += ".".concat(numberValue);
+						else if (numberInput.value === "0") numberInput.value = numberValue;
+						else numberInput.value += numberValue;
+							
+						nextDecimal = false;
+
+						limitInput();
+					}
+				)
+			);
+
+			decimalButton.addEventListener(
+				"click",
+				() => nextDecimal = numberInput.value.includes(".")? false:true
+			);
+
+			clearButton.addEventListener(
+				"click",
+				() => numberInput.value = "0"
+			);
+
+			numberInput.addEventListener("input", limitInput);
+
+			numberInput.addEventListener("change", limitInput);
+
+			submitButton.addEventListener(
+				"click",
+				() => {
+					operationInput.value += operatorInput.value + numberInput.value;
+					calculateInput.value = "true";
+					form.submit();
+				}
+			);
+
+			function limitInput() {
+				if (numberInput.value.length > 13) numberInput.value = numberInput.value.slice(0, 13);
+			}
+		});
+	</script>
 </body>
 
 </html>
